@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-0">
+  <%= link_to 'Business Applications', root_path, class:'navbar-brand'  %>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <li class="<%= active_class('/') %>">
+          <%= link_to 'Home', root_path, class:'nav-item nav-link'  %>
+        </li>
+
+        <li class="<%= active_class('/business_applications/new') %>">
+          <%= link_to 'Create Application', new_business_application_path, class:'nav-item nav-link'  %>
+        </li>
+
+        <li class="<%= active_class('/business_applications/allapprovedapplications') %>">
+          <%= link_to 'All Approved Applications', business_applications_allapprovedapplications_path, class:'nav-item nav-link'  %>
+        </li>
+    </div>
+  </div>
+</nav>

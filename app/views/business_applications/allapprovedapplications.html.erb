@@ -1,0 +1,30 @@
+<h1 class="text-left"><strong>All Approved Business Applications</strong></h1>
+<br/>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Business Name</th>
+        <th>Application Created</th>
+        <th>Status</th>
+        <th class="text-right">Time Approved</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @business_application.each do |app| %>
+        <tr>
+
+            <td><%= link_to app.title, business_application_path(app)%></td>
+
+            <td><%= app.created_at%></td>
+
+            <% if app.status === 1  %>
+                <td class="approve">Approved <i class="fa-solid fa-circle-check"></i></td>
+            <% end %>
+
+            <td class="text-right"><%= app.updated_at%></td>
+
+        </tr>
+    <% end %>
+    </tbody>
+</table>

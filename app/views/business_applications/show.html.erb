@@ -1,0 +1,27 @@
+<div>
+
+    <h1 class="text-left"><strong><%= @business_application.title %></strong></h1>
+
+    <h2>Business Details:</h2>
+    <p class="details">
+        <%= @business_application.about %> 
+    </p>
+    <br/>
+
+    <% if @business_application.status == 0 || @business_application.status.nil? %>
+        <p class="details">Current Status: <span class="pend">Pending</span></p>
+    <% end %>
+
+    <% if @business_application.status == 1 || @business_application.status.nil? %>
+        <p class="details">Current Status: <span class="approve">Approved</span></p>
+    <% end %>
+
+    <% if @business_application.status == 2 || @business_application.status.nil? %>
+        <p class="details">Current Status: <span class="reject">Rejected</span></p>
+    <% end %>
+
+    <br/>
+    <%= link_to 'Back',business_applications_allapprovedapplications_path, class:"smallbutton" %>
+
+    <br/>
+</div>

@@ -1,0 +1,54 @@
+<div>
+
+    <h1 class="text-left"><strong><%= @business_application.title %></strong></h1>
+
+    <% flash.each do |key, message| %> 
+        <div class="text-center alert alert-<%= key %>">
+        <%= message %> 
+        </div>
+    <% end %>
+
+    <h2>Business Details:</h2>
+    <p class="details">
+        <%= @business_application.about %> 
+    </p>
+    <br/>
+
+    <% if @business_application.status == 0 || @business_application.status.nil? %>
+        <p class="details">Current Status: <span class="pend">Pending</span></p>
+    <% end %>
+
+    <% if @business_application.status == 1 || @business_application.status.nil? %>
+        <p class="details">Current Status: <span class="approve">Approved</span></p>
+    <% end %>
+
+
+    <% if @business_application.status == 2 || @business_application.status.nil? %>
+        <p class="details">Current Status: <span class="reject">Rejected</span></p>
+    <% end %>
+
+
+
+    <br/>
+
+
+    <%= form_with(model: @business_application, local: true) do |f| %>
+
+
+        <%= f.label :status,  value:'Change Application Status:' %>
+        <%= f.select :status, [["Pending","0"], ["Approved","1"], ["Rejected","2"]], {}, {class: "form-control"} %>
+    
+        <br/>
+        <div class="d-flex flex-row justify-content-center gap-3">
+            <%= link_to 'Cancel',root_path, class:"smallbutton" %>
+            <%= f.submit value:'Change Status' ,class:'smallbutton' %>
+            <%= link_to "Delete Application", business_application_path(@business_application.id), class: "deletebutton", data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+            }%>
+        </div>
+    <% end %>
+
+
+    
+</div>

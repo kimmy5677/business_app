@@ -1,0 +1,48 @@
+<h1 class="text-left"><strong>All Applications</strong></h1>
+<br/>
+<br/>
+<%= link_to "New Application", new_business_application_path ,class:"smallbutton pull-right"%>
+
+<% flash.each do |key, message| %> 
+    <div class="text-center home-alert alert alert-<%= key %>">
+    <%= message %> 
+    </div>
+<% end %>
+<br/>
+<br/>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th>Business Name</th>
+        <th>Application Created</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @business_application.each do |app| %>
+        <tr>
+
+            <td><%= app.title%></td>
+
+            <td><%= app.created_at%></td>
+
+            <% if app.status == 0 || app.status.nil? %>
+                <td class="pend" >Pending <i class="fa-regular fa-circle-dot"></i></td>
+            <% end %>
+
+            <% if app.status === 1  %>
+                <td class="approve">Approved <i class="fa-solid fa-circle-check"></i></td>
+            <% end %>
+
+            <% if app.status === 2  %>
+                <td class="reject">Rejected <i class="fa-solid fa-circle-xmark"></i></td>
+            <% end %>
+
+            <td class="text-right"><%= link_to 'Edit Status', edit_business_application_path(app)%></td>
+            
+        </tr>
+    <% end %>
+    </tbody>
+</table>
